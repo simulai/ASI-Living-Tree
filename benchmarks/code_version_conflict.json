@@ -1,0 +1,100 @@
+{
+  "benchmark_name": "Code Version Conflict Resolution",
+  "description": "测试Living Tree在代码版本冲突场景下的路由能力",
+  "version": "1.0",
+  "date": "2026-04-20",
+  "scenarios": [
+    {
+      "id": "requests_simple_get",
+      "description": "简单GET请求",
+      "expected_version": "v1",
+      "query_template": "How to make a simple {method} request?",
+      "methods": ["GET", "POST", "PUT", "DELETE"]
+    },
+    {
+      "id": "requests_retry",
+      "description": "自动重试失败请求",
+      "expected_version": "v2",
+      "query": "How to automatically retry failed requests?",
+      "api_patterns": ["Retry(total=3)", "Session.mount()", "HTTPAdapter()"]
+    },
+    {
+      "id": "requests_ssl",
+      "description": "SSL证书验证",
+      "expected_version": "v2adv",
+      "query": "How to verify SSL certificates for HTTPS requests?",
+      "api_patterns": ["cert=('/path/cert.pem')", "SSLAdapter()", "verify=True"]
+    },
+    {
+      "id": "requests_session",
+      "description": "Session连接池",
+      "expected_version": "v2",
+      "query": "How to use session objects for connection pooling?",
+      "api_patterns": ["session.get()", "Session()", "connection_pool"]
+    },
+    {
+      "id": "requests_file_upload",
+      "description": "文件上传",
+      "expected_version": "v1",
+      "query": "How to upload a file via POST?",
+      "api_patterns": ["files={'file': open()}", "data=files"]
+    },
+    {
+      "id": "requests_proxy",
+      "description": "代理配置",
+      "expected_version": "v2adv",
+      "query": "How to use proxy for HTTP requests?",
+      "api_patterns": ["proxies={'http':}", "ProxyManager()"]
+    },
+    {
+      "id": "requests_json",
+      "description": "JSON载荷",
+      "expected_version": "v2",
+      "query": "How to send JSON data in POST request?",
+      "api_patterns": ["json=payload", "content-type=application/json"]
+    },
+    {
+      "id": "requests_cookie",
+      "description": "Cookie处理",
+      "expected_version": "v2",
+      "query": "How to maintain cookies across requests?",
+      "api_patterns": ["Session()", "cookies", "Jar()"]
+    },
+    {
+      "id": "requests_stream",
+      "description": "流式下载",
+      "expected_version": "v2adv",
+      "query": "How to stream large file downloads efficiently?",
+      "api_patterns": ["stream=True", "iter_content()", "raw=True"]
+    },
+    {
+      "id": "requests_concurrent_retry_ssl",
+      "description": "高并发+重试+SSL",
+      "expected_version": "v2adv",
+      "query": "How to make concurrent requests with retry and SSL verification?",
+      "api_patterns": ["concurrent", "retry", "SSL", "adapter"]
+    }
+  ],
+  "metrics": {
+    "routing_accuracy": "正确路由到预期版本的百分比",
+    "energy_gap_threshold": 0.03,
+    "beta": 15.0
+  },
+  "version_metadata": {
+    "v1": {
+      "name": "Simple Sync",
+      "description": "基础同步API，无高级特性",
+      "complexity": "low"
+    },
+    "v2": {
+      "name": "Advanced",
+      "description": "Session、重试、json参数",
+      "complexity": "medium"
+    },
+    "v2adv": {
+      "name": "Production Ready",
+      "description": "SSL适配器、高级重试、代理、流式",
+      "complexity": "high"
+    }
+  }
+}

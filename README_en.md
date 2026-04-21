@@ -1,8 +1,6 @@
 # ASI-Living-Tree
 
-> 基于Hopfield动力学的知识图谱检索架构，专为代码领域RAG设计
-
-[English](./README_en.md) | 中文
+> 一种基于Hopfield动力学的知识图谱检索架构，专为代码领域的RAG设计
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -32,7 +30,7 @@ pip install -e .
 
 ```python
 import numpy as np
-from living_tree import LivingTreeMemory, ClusterLevelEnergyGapRetrieval
+from living_tree import LivingTreeMemory, HopfieldRetrieval, ClusterLevelEnergyGapRetrieval
 
 # 创建知识记忆
 memory = LivingTreeMemory()
@@ -96,8 +94,8 @@ is_ambiguous = Energy_Gap < threshold
 
 ## Demos
 
-- `demos/demo_code_version_conflict.ipynb` - 代码版本冲突Killer Demo（待添加）
-- `demos/demo_humaneval_rag.ipynb` - HumanEval RAG演示（待添加）
+- `demos/demo_code_version_conflict.ipynb` - 代码版本冲突Killer Demo
+- `demos/demo_humaneval_rag.ipynb` - HumanEval RAG演示
 
 ## Benchmark
 

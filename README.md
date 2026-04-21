@@ -81,6 +81,25 @@ This provides **258x discrimination** for code version conflicts, helping LLMs a
 | Clarity | Opaque attention ❌ | Energy landscape ✅ |
 | Ambiguity Detection | None ❌ | 258x gap ✅ |
 
+## Comparison with M-Flow
+
+[M-Flow](https://github.com/FlowElement-ai/m_flow) is a leading Graph-RAG approach that uses a 4-level cone graph hierarchy (Episode → Facet → FacetPoint → Entity) with evidence-path scoring. It achieves **81.8%** on LoCoMo-10 and **89%** on LongMemEval benchmarks.
+
+Living Tree and M-Flow take complementary architectural approaches:
+
+| Aspect | M-Flow | ASI-Living-Tree |
+|--------|--------|-----------------|
+| **Core Mechanism** | Graph-propagation with path-cost optimization | Hopfield energy dynamics |
+| **Knowledge Structure** | 4-level cone graph (Episode → Facet → FacetPoint → Entity) | Isolated nodes with metadata clusters |
+| **Retrieval Philosophy** | "Vectors find candidates. The graph decides relevance." | Energy landscape determines winners |
+| **Ambiguity Handling** | Multi-granularity routing through cone levels | Cluster-level energy gap detection |
+| **Update Cost** | O(N) - graph structure affected | O(1) - nodes isolated |
+| **Forgetting** | Depends on implementation | Zero - node isolation |
+| **Primary Strength** | Cross-document entity bridging, semantic path reasoning | Code version conflicts, deterministic retrieval |
+| **Target Domain** | General memory/chatbot | Code RAG, API version routing |
+
+**Key Insight**: M-Flow excels at finding coherent Episode bundles through graph traversal. Living Tree excels at **deterministically routing between conflicting versions** (e.g., API v1 vs v2) with 258x discrimination. These are complementary capabilities - a future system could combine M-Flow's graph reasoning with Living Tree's energy-gap routing.
+
 ## Installation
 
 ```bash
